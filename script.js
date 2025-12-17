@@ -2,8 +2,7 @@ const envelopeWrapper = document.getElementById('envelope-wrapper');
 let isOpen = false;
 
 envelopeWrapper.addEventListener('click', (e) => {
-    // Cek apakah yang diklik adalah bagian dari konten surat (teks/scrollbar)
-    // Jika ya, jangan tutup amplop (biar user bisa scroll/block teks dengan tenang)
+  
     if (e.target.closest('.letter-content') && isOpen) {
         return; 
     }
@@ -40,3 +39,4 @@ function createConfetti() {
         }, 5000);
     }
 }
+
