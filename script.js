@@ -1,7 +1,7 @@
 const envelopeWrapper = document.getElementById('envelope-wrapper');
 let isOpen = false;
 
-envelopeWrapper.addEventListener('click', (e) => {
+envelopeWrapper.addEventListener('click', () => {
   
     if (e.target.closest('.letter-content') && isOpen) {
         return; 
@@ -39,4 +39,5 @@ function createConfetti() {
         }, 5000);
     }
 }
+
 
