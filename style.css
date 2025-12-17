@@ -1,9 +1,8 @@
 :root {
-    --cover-color: #ea7ea3;
-    --text-gold: #ffe5ee;
+    --bg-color: #fce4ec;
+    --envelope-color: #ff7675;
+    --envelope-dark: #d63031;
     --paper-color: #fffbf0;
-    --book-width: 365px;
-    --book-height: 485px; 
 }
 
 * {
@@ -17,192 +16,180 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f2f5;
+    background-color: var(--bg-color);
     font-family: 'Lora', serif;
     overflow: hidden;
-    perspective: 1500px;
+    flex-direction: column;
 }
 
-.book-container {
+.container {
     position: relative;
-    width: var(--book-width);
-    height: var(--book-height);
+    top: 50px;
+}
+
+.envelope-wrapper {
+    position: relative;
+    background: var(--envelope-dark);
+    width: 300px;
+    height: 200px;
     cursor: pointer;
-    transition: transform 0.5s;
+    transition: transform 0.3s;
 }
 
-.book-container:hover {
-    transform: translateY(-10px);
+.envelope-wrapper:hover {
+    transform: translateY(-5px);
 }
 
-.book {
+.envelope {
     position: relative;
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-    transform-origin: left center;
-    box-shadow: 20px 20px 30px rgba(0,0,0,0.3);
 }
 
-/* --- COVER DEPAN --- */
-.front-cover {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: var(--cover-color);
-    border-radius: 5px 10px 10px 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-    transform-origin: left;
-    transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
-    z-index: 2;
-    border: 2px solid #FFB5D4;
-    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M5 0h1v1H5V0zM0 2h1v1H0V2zM3 3h1v1H3V3zM2 5h1v1H2V5zM6 6h1v1H6V6z'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-.gold-border {
-    border: 3px double var(--text-gold);
-    width: 90%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 15px;
-}
-
-.univ-logo {
-    font-size: 40px;
-    color: var(--text-gold);
-    margin-bottom: 10px;
-}
-
-h1 {
-    font-family: 'Cinzel', serif;
-    color: var(--text-gold);
-    font-size: 2rem;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-    margin-bottom: 5px;
-}
-
-.sub-title {
-    color: var(--text-gold);
-    font-size: 0.8rem;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 1.4;
-}
-
-.center-text p {
-    color: var(--text-gold);
-    font-style: italic;
-    opacity: 0.9;
-    margin: 10px 0;
-}
-
-.author {
-    color: var(--text-gold);
-    margin-top: auto;
-}
-
-.author p:nth-child(2) {
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 1rem; 
-    line-height: 1.3;
-}
-
-.click-hint {
-    position: absolute;
-    bottom: 10px;
-    color: #ffe5eebe;
-    font-size: 0.7rem;
-    animation: pulse 1.5s infinite;
-}
-
-/* --- HALAMAN DALAM --- */
-.inside-page {
-    position: absolute;
-    width: 98%;
-    height: 96%;
-    background-color: var(--paper-color);
-    top: 2%;
-    left: 1%;
-    border-radius: 2px 8px 8px 2px;
-    z-index: 1;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Ubah ke flex-start agar teks panjang naik ke atas */
-    text-align: center;
-    box-shadow: inset 10px 0 20px rgba(0,0,0,0.1);
-    background-image: linear-gradient(#e6e6e6 1px, transparent 1px);
-    background-size: 100% 25px;
-}
-
-.message-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.2rem;
-    color: #f19fb9;
-    margin-top: 10px;
-    margin-bottom: 15px;
-}
-
-.message-body {
-    font-size: 0.95rem; /* Ukuran font disesuaikan agar muat */
-    line-height: 1.6; /* Disesuaikan agar pas dengan garis buku */
-    color: #333;
-    width: 100%;
-}
-
-/* .stamp {
-    margin-top: auto; 
-    margin-bottom: 10px;
-    border: 3px solid #c0392b;
-    color: #c0392b;
-    padding: 8px 15px;
-    border-radius: 8px;
-    transform: rotate(-8deg);
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    opacity: 0.8;
-} */
-
-/* --- ANIMASI BUKA BUKU --- */
-.book-container.open .book {
-    transform: translateX(50%);
-}
-
-.book-container.open .front-cover {
-    transform: rotateY(-180deg);
-    z-index: 0;
-}
-
-.front-cover::after {
+.envelope::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: var(--cover-color);
-    border-radius: 5px 10px 10px 5px;
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
+    top: 0;
+    z-index: 2;
+    border-top: 110px solid var(--envelope-color);
+    border-right: 150px solid transparent;
+    border-left: 150px solid transparent;
+    transform-origin: top;
+    transition: all 0.5s ease-in-out 0.7s;
 }
 
-@keyframes pulse {
-    0% { opacity: 0.4; }
+.envelope::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    border-bottom: 100px solid var(--envelope-color);
+    border-right: 150px solid var(--envelope-dark);
+    border-left: 150px solid var(--envelope-dark);
+}
+
+.letter {
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    width: 270px;
+    height: 380px; 
+    background: var(--paper-color);
+    z-index: 1;
+    padding: 20px;
+    transition: all 1s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background-image: linear-gradient(#e6e6e6 1px, transparent 1px);
+    background-size: 100% 25px;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.letter::-webkit-scrollbar {
+    width: 4px;
+}
+.letter::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.text-content {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #333;
+    text-align: center;
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: #d35400;
+    margin-bottom: 10px;
+}
+
+.sign {
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    color: #555;
+}
+
+.stamp {
+    margin-top: 15px;
+    border: 2px solid #c0392b;
+    color: #c0392b;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transform: rotate(-5deg);
+    font-weight: bold;
+    font-size: 0.8rem;
+    display: inline-block;
+}
+
+.heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background: #ffcc00;
+    z-index: 4;
+    transform: translate(-50%, -50%) rotate(45deg);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    transition: all 0.5s ease-in-out 0.7s;
+    border-radius: 0 0 5px 0;
+}
+
+.heart::before, .heart::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #ffcc00;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -15px;
+    left: 0;
+}
+
+.heart::after {
+    left: -15px;
+    top: 0;
+}
+
+.envelope-wrapper.open .envelope::before {
+    transform: rotateX(180deg);
+    z-index: 0;
+    transition-delay: 0s;
+}
+
+.envelope-wrapper.open .heart {
+    transform: translate(-50%, -50%) rotate(45deg) scale(0);
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.envelope-wrapper.open .letter {
+    transform: translateY(-200px);
+    z-index: 3;
+    transition-delay: 0.5s;
+}
+
+.hint {
+    margin-top: 120px;
+    color: #888;
+    font-size: 0.9rem;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 0.5; }
     50% { opacity: 1; }
-    100% { opacity: 0.4; }
+    100% { opacity: 0.5; }
 }
 
-/* --- KONFETI --- */
 .confetti {
     position: absolute;
     width: 10px;
@@ -216,22 +203,11 @@ h1 {
     to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
 
-/* --- RESPONSIVE HP --- */
-/* @media (max-width: 600px) {
-    :root {
-        --book-width: 250px;
-        --book-height: 400px; 
+@media (max-width: 400px) {
+    .envelope-wrapper {
+        transform: scale(0.85);
     }
-    .book-container.open .book {
-        transform: translateX(0);
+    .hint {
+        margin-top: 100px;
     }
-    .book-container.open {
-        margin-left: 130px;
-    }
-    .message-body {
-        font-size: 0.7rem; /* Lebih kecil sedikit di HP */
-        line-height: 1.5;
-    } */
-
 }
-
