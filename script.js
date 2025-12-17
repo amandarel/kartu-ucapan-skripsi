@@ -1,19 +1,21 @@
-const book = document.getElementById('myBook');
+const envelope = document.getElementById('envelope');
 let isOpen = false;
 
-book.addEventListener('click', () => {
-    book.classList.toggle('open');
-    isOpen = !isOpen;
-
-    if (isOpen) {
-        createConfetti();
+envelope.addEventListener('click', () => {
+    if (!isOpen) {
+        envelope.classList.add('open');
+        isOpen = true;
+        setTimeout(createConfetti, 600);
+    } else {
+        envelope.classList.remove('open');
+        isOpen = false;
     }
 });
 
 function createConfetti() {
-    const colors = ['#e74c3c', '#3498db', '#f1c40f', '#2ecc71', '#9b59b6'];
+    const colors = ['#e74c3c', '#3498db', '#f1c40f', '#2ecc71', '#9b59b6', '#ff9ff3'];
     
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 60; i++) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
         
