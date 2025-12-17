@@ -217,7 +217,7 @@ h1 {
 }
 
 /* --- RESPONSIVE HP --- */
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
     :root {
         --book-width: 250px;
         --book-height: 400px; 
@@ -231,6 +231,7 @@ h1 {
     .message-body {
         font-size: 0.7rem; /* Lebih kecil sedikit di HP */
         line-height: 1.5;
-    }
+    } */
 
 }
+
