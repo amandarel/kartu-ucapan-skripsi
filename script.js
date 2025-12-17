@@ -1,13 +1,19 @@
-const envelope = document.getElementById('envelope');
+const envelopeWrapper = document.getElementById('envelope-wrapper');
 let isOpen = false;
 
-envelope.addEventListener('click', () => {
+envelopeWrapper.addEventListener('click', (e) => {
+    // Cek apakah yang diklik adalah bagian dari konten surat (teks/scrollbar)
+    // Jika ya, jangan tutup amplop (biar user bisa scroll/block teks dengan tenang)
+    if (e.target.closest('.letter-content') && isOpen) {
+        return; 
+    }
+
     if (!isOpen) {
-        envelope.classList.add('open');
+        envelopeWrapper.classList.add('open');
         isOpen = true;
         setTimeout(createConfetti, 600);
     } else {
-        envelope.classList.remove('open');
+        envelopeWrapper.classList.remove('open');
         isOpen = false;
     }
 });
