@@ -219,8 +219,8 @@ h1 {
 /* --- RESPONSIVE HP --- */
 @media (max-width: 600px) {
     :root {
-        --book-width: 260px;
-        --book-height: 380px;
+        --book-width: 250px;
+        --book-height: 400px; 
     }
     .book-container.open .book {
         transform: translateX(0);
@@ -229,7 +229,8 @@ h1 {
         margin-left: 130px;
     }
     .message-body {
-        font-size: 0.85rem; /* Lebih kecil sedikit di HP */
+        font-size: 0.7rem; /* Lebih kecil sedikit di HP */
         line-height: 1.5;
     }
+
 }
