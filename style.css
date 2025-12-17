@@ -44,6 +44,7 @@ body {
     transform: translateY(-5px);
 }
 
+/* Bagian Amplop */
 .envelope::before {
     content: '';
     position: absolute;
@@ -54,6 +55,7 @@ body {
     border-left: 250px solid transparent;
     transform-origin: top;
     transition: all 0.5s ease-in-out 0.7s;
+    pointer-events: none; /* Agar klik tembus ke surat saat terbuka */
 }
 
 .envelope::after {
@@ -64,44 +66,54 @@ body {
     border-bottom: 150px solid var(--envelope-color);
     border-right: 250px solid var(--envelope-dark);
     border-left: 250px solid var(--envelope-dark);
+    pointer-events: none;
 }
 
+/* Bagian Surat (Container) */
 .letter {
     position: absolute;
     bottom: 0;
     left: 25px;
     width: 450px;
-    height: 420px;
+    height: 400px; /* Tinggi surat */
     background: var(--paper-color);
     z-index: 2;
-    padding: 25px 30px;
+    padding: 10px; /* Padding luar */
     transition: all 1s ease-in-out;
     background-image: linear-gradient(#e6e6e6 1px, transparent 1px);
     background-size: 100% 28px;
     border-radius: 8px;
+    
+    /* Posisi awal tersembunyi */
     transform: translateY(100px); 
     opacity: 0;
 }
 
+/* ISI SURAT YANG BISA DI-SCROLL */
 .letter-content {
+    width: 100%;
     height: 100%;
-    overflow-y: auto;
-    padding-right: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    overflow-y: auto; /* KUNCI AGAR BISA SCROLL */
+    padding: 15px 20px;
     text-align: center;
 }
 
+/* Desain Scrollbar Custom (Biar cantik) */
 .letter-content::-webkit-scrollbar {
-    width: 5px;
+    width: 6px;
 }
-
+.letter-content::-webkit-scrollbar-track {
+    background: transparent;
+}
 .letter-content::-webkit-scrollbar-thumb {
-    background: #ccc;
+    background: #fab1a0;
     border-radius: 10px;
 }
+.letter-content::-webkit-scrollbar-thumb:hover {
+    background: #e17055;
+}
 
+/* Typography */
 .title {
     font-family: 'Dancing Script', cursive;
     font-size: 2.2rem;
@@ -111,18 +123,18 @@ body {
 }
 
 .letter p {
-    font-size: 1.05rem;
+    font-size: 1rem;
     line-height: 1.75; 
     color: var(--text-color);
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .secret {
     font-style: italic;
     color: #c0392b !important;
-    font-size: 0.95rem !important;
+    font-size: 0.9rem !important;
     margin-top: 15px;
-    padding: 5px;
+    padding: 10px;
     background: rgba(255, 0, 0, 0.05);
     border-radius: 5px;
 }
@@ -137,6 +149,7 @@ body {
     width: 100%;
 }
 
+/* Hati Penutup */
 .heart {
     position: absolute;
     top: 55%; 
@@ -149,6 +162,7 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     transition: all 0.5s ease-in-out 0.7s;
     border-radius: 0 0 5px 0;
+    pointer-events: none;
 }
 
 .heart::before, .heart::after {
@@ -159,10 +173,10 @@ body {
     background: #ffcc00;
     border-radius: 50%;
 }
-
 .heart::before { top: -20px; left: 0; }
 .heart::after { left: -20px; top: 0; }
 
+/* ANIMASI KETIKA DIBUKA */
 .envelope-wrapper.open .envelope::before {
     transform: rotateX(180deg);
     z-index: 1;
@@ -176,10 +190,10 @@ body {
 }
 
 .envelope-wrapper.open .letter {
-    transform: translateY(-160px); 
+    transform: translateY(-150px); /* Surat naik */
     opacity: 1;
     transition-delay: 0.5s;
-    z-index: 3;
+    z-index: 6; /* Harus paling atas agar bisa diklik/scroll */
     box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
 }
 
@@ -210,32 +224,19 @@ body {
     to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
 
+/* Responsive Scaling */
 @media (max-width: 550px) {
-    .envelope-wrapper {
-        transform: scale(0.65);
-    }
-    .hint {
-        margin-top: 0px; 
-    }
-    .container {
-        margin-top: 100px;
-    }
+    .envelope-wrapper { transform: scale(0.65); }
+    .hint { margin-top: 0px; }
+    .container { margin-top: 100px; }
 }
 
 @media (max-width: 400px) {
-    .envelope-wrapper {
-        transform: scale(0.55); 
-    }
-    .container {
-        margin-top: 80px;
-    }
+    .envelope-wrapper { transform: scale(0.55); }
+    .container { margin-top: 80px; }
 }
 
 @media (max-height: 600px) {
-    .container {
-        margin-top: 120px;
-    }
-    .envelope-wrapper {
-        transform: scale(0.5);
-    }
+    .container { margin-top: 120px; }
+    .envelope-wrapper { transform: scale(0.5); }
 }
