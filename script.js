@@ -2,13 +2,10 @@ const envelopeWrapper = document.getElementById('envelope-wrapper');
 let isOpen = false;
 
 envelopeWrapper.addEventListener('click', (e) => {
-    // Jika surat sudah terbuka dan user mengklik area teks/scrollbar,
-    // JANGAN tutup amplopnya (biarkan user scroll).
     if (isOpen && e.target.closest('.letter-content')) {
         return; 
     }
 
-    // Toggle buka/tutup
     if (!isOpen) {
         envelopeWrapper.classList.add('open');
         isOpen = true;
@@ -41,4 +38,5 @@ function createConfetti() {
         }, 5000);
     }
 }
+
 
