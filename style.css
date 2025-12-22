@@ -15,7 +15,7 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center; /* Tetap di tengah secara vertikal */
+    align-items: center; 
     min-height: 100vh;
     background-color: var(--bg-color);
     font-family: 'Lora', serif;
@@ -27,7 +27,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* PERBAIKAN 1: Menurunkan posisi amplop lebih jauh ke bawah */
     top: 50px; 
 }
 
@@ -56,7 +55,7 @@ body {
     border-left: 250px solid transparent;
     transform-origin: top;
     transition: all 0.5s ease-in-out 0.7s;
-    pointer-events: none; /* Agar klik tembus ke surat saat terbuka */
+    pointer-events: none; 
 }
 
 .envelope::after {
@@ -70,7 +69,6 @@ body {
     pointer-events: none;
 }
 
-/* Bagian Surat (Container) */
 .letter {
     position: absolute;
     bottom: 0;
@@ -84,16 +82,11 @@ body {
     background-image: linear-gradient(#e6e6e6 1px, transparent 1px);
     background-size: 100% 28px;
     border-radius: 8px;
-    
-    /* Posisi awal: Sembunyi di dalam */
     transform: translateY(0px); 
     opacity: 0;
-    
-    /* Agar tidak menghalangi klik amplop saat tertutup */
     pointer-events: none; 
 }
 
-/* ISI SURAT YANG BISA DI-SCROLL */
 .letter-content {
     width: 100%;
     height: 100%;
@@ -174,7 +167,6 @@ body {
 .heart::before { top: -20px; left: 0; }
 .heart::after { left: -20px; top: 0; }
 
-/* ANIMASI KETIKA DIBUKA */
 .envelope-wrapper.open .envelope::before {
     transform: rotateX(180deg);
     z-index: 1;
@@ -188,7 +180,6 @@ body {
 }
 
 .envelope-wrapper.open .letter {
-    /* PERBAIKAN 2: Surat naik tidak terlalu tinggi (-120px) agar tetap terlihat */
     transform: translateY(-120px);
     opacity: 1;
     transition-delay: 0.5s;
@@ -198,7 +189,6 @@ body {
 }
 
 .hint {
-    /* Jarak teks hint diatur agar tidak terlalu jauh */
     margin-top: 50px;
     color: #7f8c8d;
     font-size: 1rem;
@@ -225,11 +215,8 @@ body {
     to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
 
-/* RESPONSIVE SCALING */
 @media (max-width: 550px) {
-    /* Perkecil amplop di HP */
     .envelope-wrapper { transform: scale(0.65); }
-    /* Dorong amplop lebih ke bawah lagi khusus HP */
     .container { top: 80px; } 
     .hint { margin-top: 20px; }
 }
@@ -240,8 +227,8 @@ body {
 }
 
 @media (max-height: 600px) {
-    /* Jika layar pendek (landscape), dorong lebih jauh */
     .container { top: 100px; }
     .envelope-wrapper { transform: scale(0.5); }
 }
+
 
